@@ -1,0 +1,56 @@
+<?php
+include 'includes/header.php';
+
+// Ensure database connection exists
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
+
+// Fetch all products ordered by name
+$result = $conn->query("SELECT * FROM products ORDER BY name ASC");
+
+// Check for query errors
+if (!$result) {
+    die("Database query failed: " . $conn->error);
+}
+?>
+<div class="container mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+        <h1 class="font-heading text-6xl md:text-7xl text-gradient-pink">The Complete Arsenal</h1>
+        <p class="text-gray-400">Every piece of gear you need to achieve victory.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($product = $result->fetch_assoc()): ?>
+                <div class="game-day-card rounded-lg overflow-hidden">
+                    <a href="product-detail.php?id=<?= urlencode($product['id']) ?>">
+                        <img src="<?= htmlspecialchars($product['image_url']) ?>" 
+                             alt="<?= htmlspecialchars($product['name']) ?>" 
+                             class="w-full h-56 object-cover">
+                    </a>
+                    <div class="p-5 flex flex-col justify-between h-52">
+                        <div>
+                            <h3 class="font-heading text-2xl">
+                                <a href="product-detail.php?id=<?= urlencode($product['id']) ?>" 
+                                   class="hover:text-pink-400">
+                                    <?= htmlspecialchars($product['name']) ?>
+                                </a>
+                            </h3>
+                            <p class="text-pink-400 font-bold mt-2 text-2xl font-['Roboto']">
+                                <?= format_dzd($product['price']) ?>
+                            </p>
+                        </div>
+                        <button 
+                            onclick="addToCart(<?= (int)$product['id'] ?>, 1)" 
+                            class="add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p class="text-center text-gray-400 col-span-4">No products available at the moment.</p>
+        <?php endif; ?>
+    </div>
+</div>
+<?php include 'includes/footer.php'; ?>

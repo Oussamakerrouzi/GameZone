@@ -1,0 +1,122 @@
+/* --- Core Theme: Game Day --- */
+body {
+    background-color: #110b2d; /* Deep Indigo Base */
+}
+
+/* --- Particle.js Background Setup --- */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Main container to sit above the particles */
+.main-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Typography --- */
+.font-heading { font-family: 'Exo 2', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.font-body { font-family: 'Roboto', sans-serif; }
+.text-gradient-pink {
+    background: linear-gradient(to right, #f92dff, #d900ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Navigation --- */
+.nav-link-gameday {
+    font-weight: bold;
+    color: #d1d5db;
+    transition: all 0.2s ease-in-out;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+.nav-link-gameday:hover {
+    color: white;
+    border-bottom-color: #d900ff;
+}
+
+/* --- Buttons --- */
+.game-day-button {
+    display: inline-block;
+    background: linear-gradient(to right, #f92dff, #d900ff);
+    color: white;
+    padding: 0.75rem 2.5rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(217, 0, 255, 0);
+}
+.game-day-button:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 25px rgba(217, 0, 255, 0.5);
+}
+.game-day-button:disabled {
+    background: #4b5563;
+    cursor: not-allowed;
+}
+
+
+/* --- Cards (Products & Admin Panels) --- */
+.game-day-card {
+    background-color: rgba(10, 5, 30, 0.6);
+    border: 1px solid #4a1d74;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.game-day-card.is-visible { opacity: 1; transform: translateY(0); }
+.game-day-card:hover {
+    transform: translateY(-8px);
+    border-color: #d900ff;
+    box-shadow: 0 10px 30px rgba(217, 0, 255, 0.2);
+}
+.game-day-card .add-to-cart-btn {
+    background-color: transparent;
+    border: 2px solid #d900ff;
+    color: #d900ff;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+.game-day-card .add-to-cart-btn:hover { background-color: #d900ff; color: white; }
+
+/* --- Form Elements --- */
+.form-input-gameday {
+    width: 100%;
+    background-color: #1a123f;
+    border: 1px solid #4a1d74;
+    color: white;
+    border-radius: 4px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+.form-input-gameday:focus {
+    outline: none;
+    border-color: #d900ff;
+    box-shadow: 0 0 10px rgba(217, 0, 255, 0.5);
+}
+.form-input-gameday.file-input {
+    padding: 0;
+}
+.form-input-gameday.file-input::file-selector-button {
+    margin-right: 1rem; padding: 0.75rem 1rem; border-radius: 0; border: 0;
+    font-weight: 600; background-color: #d900ff; color: white; cursor: pointer;
+    transition: background-color 0.2s;
+}
+.form-input-gameday.file-input::file-selector-button:hover { background-color: #f92dff; }
+
+/* --- Message Banners --- */
+.message-success { background-color: rgba(22, 163, 74, 0.2); border-left: 4px solid #22c55e; color: #a7f3d0; padding: 1rem; margin-bottom: 1.5rem; }
+.message-error { background-color: rgba(239, 68, 68, 0.2); border-left: 4px solid #ef4444; color: #fecaca; padding: 1rem; margin-bottom: 1.5rem; }
